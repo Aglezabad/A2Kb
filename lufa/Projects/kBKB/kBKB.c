@@ -100,9 +100,7 @@ void SetupHardware()
 #endif
 
 	/* Hardware Initialization */
-	Joystick_Init();
 	LEDs_Init();
-	Buttons_Init();
 	USB_Init();
 }
 
@@ -160,29 +158,26 @@ bool CALLBACK_HID_Device_CreateHIDReport(USB_ClassInfo_HID_Device_t* const HIDIn
 {
 	USB_KeyboardReport_Data_t* KeyboardReport = (USB_KeyboardReport_Data_t*)ReportData;
 
-	uint8_t JoyStatus_LCL    = Joystick_GetStatus();
-	uint8_t ButtonStatus_LCL = Buttons_GetStatus();
-
 	uint8_t UsedKeyCodes = 0;
 
-	if (JoyStatus_LCL & JOY_UP)
-	  KeyboardReport->KeyCode[UsedKeyCodes++] = HID_KEYBOARD_SC_A;
-	else if (JoyStatus_LCL & JOY_DOWN)
-	  KeyboardReport->KeyCode[UsedKeyCodes++] = HID_KEYBOARD_SC_B;
-
-	if (JoyStatus_LCL & JOY_LEFT)
-	  KeyboardReport->KeyCode[UsedKeyCodes++] = HID_KEYBOARD_SC_C;
-	else if (JoyStatus_LCL & JOY_RIGHT)
-	  KeyboardReport->KeyCode[UsedKeyCodes++] = HID_KEYBOARD_SC_D;
-
-	if (JoyStatus_LCL & JOY_PRESS)
-	  KeyboardReport->KeyCode[UsedKeyCodes++] = HID_KEYBOARD_SC_E;
-
-	if (ButtonStatus_LCL & BUTTONS_BUTTON1)
-	  KeyboardReport->KeyCode[UsedKeyCodes++] = HID_KEYBOARD_SC_F;
-
-	if (UsedKeyCodes)
-	  KeyboardReport->Modifier = HID_KEYBOARD_MODIFIER_LEFTSHIFT;
+	// if (JoyStatus_LCL & JOY_UP)
+	//   KeyboardReport->KeyCode[UsedKeyCodes++] = HID_KEYBOARD_SC_A;
+	// else if (JoyStatus_LCL & JOY_DOWN)
+	//   KeyboardReport->KeyCode[UsedKeyCodes++] = HID_KEYBOARD_SC_B;
+	//
+	// if (JoyStatus_LCL & JOY_LEFT)
+	//   KeyboardReport->KeyCode[UsedKeyCodes++] = HID_KEYBOARD_SC_C;
+	// else if (JoyStatus_LCL & JOY_RIGHT)
+	//   KeyboardReport->KeyCode[UsedKeyCodes++] = HID_KEYBOARD_SC_D;
+	//
+	// if (JoyStatus_LCL & JOY_PRESS)
+	//   KeyboardReport->KeyCode[UsedKeyCodes++] = HID_KEYBOARD_SC_E;
+	//
+	// if (ButtonStatus_LCL & BUTTONS_BUTTON1)
+	//   KeyboardReport->KeyCode[UsedKeyCodes++] = HID_KEYBOARD_SC_F;
+	//
+	// if (UsedKeyCodes)
+	//   KeyboardReport->Modifier = HID_KEYBOARD_MODIFIER_LEFTSHIFT;
 
 	*ReportSize = sizeof(USB_KeyboardReport_Data_t);
 	return false;
