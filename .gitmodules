@@ -1,6 +1,3 @@
 [submodule "tmk_keyboard"]
 	path = tmk_keyboard
 	url = https://github.com/Aglezabad/tmk_keyboard
-[submodule "firmware/HID"]
-	path = firmware/HID
-	url = https://github.com/NicoHood/HID
