@@ -1,6 +1,8 @@
 #include <HID-Project.h>
-#include "HID-Settings.h"
+#include "akuhell/src/keyboard_layouts/akuhell_languages.h"
 #include "Configuration.h"
+#include "akuhell/src/keyboard_layouts/akuhell.h"
+
 
 //Variables.
 int row = 0;
@@ -18,7 +20,6 @@ void setup() {
   for (int i = 0; i < pin_rows_length; i++) {
     pinMode(i, OUTPUT);
   }
-  NKROKeyboard.begin();
 }
 
 void loop() {
@@ -29,16 +30,12 @@ void loop() {
     analog_values[i] = lowByte(analogRead(analog_pin_cols[i]));
     for (int j = 0; j < 8; j++) {
       if(isNthBitSet(analog_values[i], j)) {
-        
+
       }
     }
   }
 
-  NKROKeyboard.send();
-  NKROKeyboard.releaseAll();
   delay(300);
 
   digitalWrite(pin_rows[row], LOW);
 }
-
-

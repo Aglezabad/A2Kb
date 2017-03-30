@@ -1,3 +1,6 @@
 [submodule "tmk_keyboard"]
 	path = tmk_keyboard
 	url = https://github.com/Aglezabad/tmk_keyboard
+[submodule "firmware/A2KbFirm/akuhell"]
+	path = firmware/A2KbFirm/akuhell
+	url = https://github.com/Aglezabad/akuhell
